@@ -1,0 +1,42 @@
+version: '2'
+
+services:
+  # postgres:
+  #   image: postgres:10-alpine
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     - POSTGRES_DB=data
+
+  app_group1:
+    # build: .
+    image: normoes/python3_virtualenv
+    command:
+    network_mode: "host"
+    volumes:
+      - ./:/home/monero
+    # depends_on:
+    #   - postgres
+    stdin_open: true
+    tty: true
+    environment:
+      - DEBUG=True
+      # - ALLOWED_HOSTS=localhost
+      # - DAEMON_PORT=18081
+      ## work with sqlite3 as db backend
+      # - DATABASE_URL=sqlite:////home/monero/mysite/db.develop
+      ## When used with postgres locally
+      ## please uncomment the postgres service and volume below
+      ## please uncomment depends_on
+      ## Then uncomment DATABASE_URL (postgresql) and comment sqlite
+      # - DATABASE_URL=postgresql://postgres:postgres@localhost:5432/which_table
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 10m
+        max-file: "3"
+
+# volumes:
+#   pgdata:
