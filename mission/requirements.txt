@@ -1,6 +1,6 @@
-django==2.1.1
+django==2.1.2
 djangorestframework==3.8.2
 psycopg2-binary==2.7.5
-requests==2.19.1
+requests==2.20.0
 django-environ==0.4.5
 python-monerorpc==0.5.2
